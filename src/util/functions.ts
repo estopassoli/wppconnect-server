@@ -146,8 +146,8 @@ export async function callWebHook(
           try {
             const events = ['unreadmessages', 'onmessage'];
             if (events.includes(event) && req.serverOptions.webhook.readMessage)
-              client.sendSeen(chatId);
-          } catch (e) {}
+             // client.sendSeen(chatId);
+          } catch (e) { }
         })
         .catch((e) => {
           req.logger.warn('Error calling Webhook.', e);
@@ -189,11 +189,10 @@ export async function autoDownload(client: any, req: any, message: any) {
         bucketName =
           bucketName.length < 3
             ? bucketName +
-              `${Math.floor(Math.random() * (999 - 100 + 1)) + 100}`
+            `${Math.floor(Math.random() * (999 - 100 + 1)) + 100}`
             : bucketName;
-        const fileName = `${
-          config.aws_s3.defaultBucketName ? client.session + '/' : ''
-        }${hashName}.${mime.extension(message.mimetype)}`;
+        const fileName = `${config.aws_s3.defaultBucketName ? client.session + '/' : ''
+          }${hashName}.${mime.extension(message.mimetype)}`;
 
         if (
           !config.aws_s3.defaultBucketName &&

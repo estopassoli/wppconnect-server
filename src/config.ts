@@ -4,8 +4,8 @@ export default {
   secretKey: 'THISISMYSECURETOKEN',
   host: 'http://localhost',
   port: '21465',
-  deviceName: 'WppConnect',
-  poweredBy: 'WPPConnect-Server',
+  deviceName: 'Agenda-Expert',
+  poweredBy: 'Agenda-Expert-Server',
   startAllSession: true,
   tokenStoreType: 'file',
   maxListeners: 15,
@@ -14,8 +14,8 @@ export default {
     url: null,
     autoDownload: true,
     uploadS3: false,
-    readMessage: true,
-    allUnreadOnStart: false,
+    readMessage: false,
+    allUnreadOnStart: true,
     listenAcks: true,
     onPresenceChanged: true,
     onParticipantsChanged: true,
@@ -72,7 +72,7 @@ export default {
     /**
      * Example of configuring the linkPreview generator
      * If you set this to 'null', it will use global servers; however, you have the option to define your own server
-     * Clone the repository https://github.com/wppconnect-team/wa-js-api-server and host it on your server with ssl
+     * Clone the repository https://github.com/Agenda-Expert-team/wa-js-api-server and host it on your server with ssl
      *
      * Configure the attribute as follows:
      * linkPreviewApiServers: [ 'https://www.yourserver.com/wa-js-api-server' ]
