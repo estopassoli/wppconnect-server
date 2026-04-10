@@ -145,8 +145,8 @@ export async function callWebHook(
         .then(() => {
           try {
             const events = ['unreadmessages', 'onmessage'];
-            if (events.includes(event) && req.serverOptions.webhook.readMessage)
-             // client.sendSeen(chatId);
+            if (events.includes(event) && req.serverOptions.webhook.readMessage) { // client.sendSeen(chatId);
+            }
           } catch (e) { }
         })
         .catch((e) => {
