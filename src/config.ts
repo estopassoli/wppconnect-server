@@ -6,23 +6,23 @@ export default {
   port: '21465',
   deviceName: 'Agenda-Expert',
   poweredBy: 'Agenda-Expert-Server',
-  startAllSession: true,
+  startAllSession: false,
   tokenStoreType: 'file',
   maxListeners: 15,
   customUserDataDir: './userDataDir/',
   webhook: {
     url: null,
-    autoDownload: true,
+    autoDownload: false,
     uploadS3: false,
     readMessage: false,
-    allUnreadOnStart: true,
-    listenAcks: true,
-    onPresenceChanged: true,
-    onParticipantsChanged: true,
-    onReactionMessage: true,
-    onPollResponse: true,
-    onRevokedMessage: true,
-    onLabelUpdated: true,
+    allUnreadOnStart: false,
+    listenAcks: false,
+    onPresenceChanged: false,
+    onParticipantsChanged: false,
+    onReactionMessage: false,
+    onPollResponse: false,
+    onRevokedMessage: false,
+    onLabelUpdated: false,
     onSelfMessage: false,
     ignore: ['status@broadcast'],
   },
@@ -44,10 +44,13 @@ export default {
     logger: ['console', 'file'],
   },
   createOptions: {
+    // Argumentos do navegador para cold-start sessions
+    // --headless NÃO deve estar ativo para permitir visualização do QR Code
     browserArgs: [
       '--disable-web-security',
       '--no-sandbox',
-      '--disable-web-security',
+      // Nota: REMOVIDO --headless=true para permitir visualização do QR Code
+      // O QR Code será exibido na tela/aba do Chrome para escaneamento
       '--aggressive-cache-discard',
       '--disable-cache',
       '--disable-application-cache',
@@ -57,10 +60,7 @@ export default {
       '--disable-default-apps',
       '--disable-extensions',
       '--disable-sync',
-      '--disable-dev-shm-usage',
-      '--disable-gpu',
       '--disable-translate',
-      '--hide-scrollbars',
       '--metrics-recording-only',
       '--mute-audio',
       '--no-first-run',
@@ -68,6 +68,13 @@ export default {
       '--ignore-certificate-errors',
       '--ignore-ssl-errors',
       '--ignore-certificate-errors-spki-list',
+      // Nota: O headless=true deve ser removido ou substituído por headless=false
+      // para permitir que o QR Code seja exibido e escaneado
+      '--disable-gpu', // Mantido para evitar issues em alguns sistemas
+      // Argumentos para FORÇAR exibição da janela do Chrome:
+      '--new-window', // Abre em nova janela visível (importante para cold-start)
+      '--start-maximized', // Maximiza a janela
+      '--window-position=0,0', // Posiciona no canto superior esquerdo
     ],
     /**
      * Example of configuring the linkPreview generator
@@ -83,6 +90,9 @@ export default {
      * Set specific whatsapp version
      */
     // whatsappVersion: '2.xxxxx',
+
+    // Opcional: Forçar headless false explicitamente (algumas versões do wppconnect exigem isso)
+    headless: true,
   },
   mapper: {
     enable: false,
