@@ -1,35 +1,7 @@
 {
-  "plugins": [
-    [
-      "@babel/plugin-transform-runtime",
-      {
-        "regenerator": true
-      }
-    ]
-  ],
   "presets": [
-    [
-      "@babel/preset-env",
-      {
-        "targets": {
-          "node": "current"
-        }
-      }
-    ],
-    [
-      "@babel/preset-typescript",
-      {
-        "targets": {
-          "node": "current"
-        },
-        "allowDeclareFields": true
-      }
-    ]
+    ["@babel/preset-env", { "targets": { "node": "current" } }],
+    ["@babel/preset-typescript", { "allowDeclareFields": true }]
   ],
-  "env": {
-    "development": {
-      "sourceMaps": "inline",
-      "retainLines": true
-    }
-  }
+  "plugins": [["@babel/plugin-transform-runtime", { "regenerator": true }]]
 }
