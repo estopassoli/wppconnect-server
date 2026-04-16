@@ -17,6 +17,7 @@
 *.tgz
 *.zip
 /.idea
+.babelrc.presets
 userDataDir
 /yarn-error.log
 .yarn/install-state.gz
